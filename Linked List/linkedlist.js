@@ -159,4 +159,4 @@ ll.addToTail(8);
 ll.addToTail(7);
 ll.addToTail(5);
 
-console.log(ll.indexOf(5))
+console.log(ll.indexOf(5));
