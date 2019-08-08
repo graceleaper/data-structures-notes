@@ -33,6 +33,7 @@ LinkedList.prototype.addToHead = function(value) {
     // referencing old head of the linked list
     // the this.head node's previous value will be the new node
     this.head.prev = newNode;
+    // ^ could also be: this.tail = this.head
   } else {
     // if there is no head to begin with...
     this.tail = newNode; // only node -- will be both head and tail
