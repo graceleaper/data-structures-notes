@@ -36,7 +36,18 @@ BST.prototype.contains = function(value) {
         // if this.value DOES have a this.right, run the contains method on it
         else return this.right.contains(value);
     }
-}
+};
+
+/*
+    depthFirstTraversal will travel through all nodes and
+    iteratorFunc will run on each node
+*/
+
+BST.prototype.depthFirstTraversal = function(iteratorFunc) {
+    if (this.left) this.left.depthFirstTraversal(iterFunc);
+    iteratorFunc(this.value);
+    if (this.right) this.right.depthFirstTraversal(iteratorFunc);
+};
 
 const bst = new BST(50); // an instance of one node without any child nodes
 bst.insert(30);
