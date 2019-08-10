@@ -23,11 +23,17 @@ BST.prototype.insert = function(value) {
 BST.prototype.contains = function(value) {
     // if value passed in is root node...
     if (value === this.value) return true;
+    // if value passed in is less than root node...
     else if (value < this.value) {
+        // if this.value (root node) does not have a this.left, return false
         if (!this.left) return false;
+        // if this.value DOES have a this.left, run the contains method on it
         else return this.left.contains(value);
+        // if value passed in is greater than root node...
     } else if (value > this.value) {
+        // if this.value (root node) does not have a this.right, return false
         if (!this.right) return false;
+        // if this.value DOES have a this.right, run the contains method on it
         else return this.right.contains(value);
     }
 }
