@@ -20,6 +20,18 @@ BST.prototype.insert = function(value) {
     }
 };
 
+BST.prototype.contains = function(value) {
+    // if value passed in is root node...
+    if (value === this.value) return true;
+    else if (value < this.value) {
+        if (!this.left) return false;
+        else return this.left.contains(value);
+    } else if (value > this.value) {
+        if (!this.right) return false;
+        else return this.right.contains(value);
+    }
+}
+
 const bst = new BST(50); // an instance of one node without any child nodes
 bst.insert(30);
 bst.insert(70);
