@@ -41,12 +41,20 @@ BST.prototype.contains = function(value) {
 /*
     depthFirstTraversal will travel through all nodes and
     iteratorFunc will run on each node
+
+    our iteratorFunc will log out nodes to the console
 */
 
-BST.prototype.depthFirstTraversal = function(iteratorFunc) {
-    if (this.left) this.left.depthFirstTraversal(iterFunc);
-    iteratorFunc(this.value);
-    if (this.right) this.right.depthFirstTraversal(iteratorFunc);
+BST.prototype.depthFirstTraversal = function(iteratorFunc, order) {
+    // first hit parent node, then left branch, then right branch
+    if (order === 'pre-order') iteratorFunc(this.value);
+    /*
+        if there is a this.left, recursively call depthFirstTraversal
+        until we reach the very last node on the left side of the bst
+    */
+    if (this.left) this.left.depthFirstTraversal(iteratorFunc, order);
+    if (order === 'in-order') iteratorFunc(this.value);
+    if (this.right) this.right.depthFirstTraversal(iteratorFunc, order);
 };
 
 const bst = new BST(50); // an instance of one node without any child nodes
@@ -61,6 +69,17 @@ bst.insert(35);
 bst.insert(85);
 bst.insert(105);
 bst.insert(10);
+/*
 console.log(bst.right.left.left); // return us our node of 59
 console.log(bst.left.right.left); // return us our node of 35
 console.log(bst.right.right); // return us our node of 100
+console.log(bst.contains(50)); // return true
+console.log(bst.contains(7)); // return false
+*/
+
+// bst.depthFirstTraversal(log, 'in-order');
+bst.depthFirstTraversal(log, 'pre-order');
+
+function log(value) {
+    console.log(value);
+}
