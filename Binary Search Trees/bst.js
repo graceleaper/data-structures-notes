@@ -46,15 +46,26 @@ BST.prototype.contains = function(value) {
 */
 
 BST.prototype.depthFirstTraversal = function(iteratorFunc, order) {
-    // first hit parent node, then left branch, then right branch
+    /* 
+        first hit parent node, then left branch, any parent
+        nodes on the left side, then right branch, and any
+        parent nodes on the right side
+    */
     if (order === 'pre-order') iteratorFunc(this.value);
     /*
         if there is a this.left, recursively call depthFirstTraversal
         until we reach the very last node on the left side of the bst
     */
     if (this.left) this.left.depthFirstTraversal(iteratorFunc, order);
+    /*
+        if order is 'in-order', travel down the left branch first.
+        Then branch back up to root node. Travel down the right branch, and
+        any left nodes WITHIN that right branch first 
+    */
     if (order === 'in-order') iteratorFunc(this.value);
     if (this.right) this.right.depthFirstTraversal(iteratorFunc, order);
+    // after left children and right children are processed. Then the parent node is processed
+    if (order === 'post-order') iteratorFunc(this.value);
 };
 
 const bst = new BST(50); // an instance of one node without any child nodes
@@ -77,8 +88,9 @@ console.log(bst.contains(50)); // return true
 console.log(bst.contains(7)); // return false
 */
 
-// bst.depthFirstTraversal(log, 'in-order');
-bst.depthFirstTraversal(log, 'pre-order');
+// bst.depthFirstTraversal(log, 'in-order'); // 10 20 30 35 45 50 59 60 70 85 100 105
+// bst.depthFirstTraversal(log, 'pre-order'); // 50 30 20 10 45 35 70 60 59 100 85 105
+bst.depthFirstTraversal(log, 'post-order'); // 10 20 35 45 30 59 60 85 105 100 70 50
 
 function log(value) {
     console.log(value);
