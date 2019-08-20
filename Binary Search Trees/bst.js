@@ -81,7 +81,7 @@ BST.prototype.breadthFirstTraversal = function(iteratorFunc) {
     */
     while (queue.length) { // run while queue is NOT empty
         let treeNode = queue.shift(); // take first node out of queue, and save it as treeNode
-        iteratorFunc(treeNode); // run iterator function on the treeNode
+        iteratorFunc(treeNode.value); // run iterator function on the treeNode
         if (treeNode.left) queue.push(treeNode.left); // if the treeNode has a left child, push it to the queue
         if (treeNode.right) queue.push(treeNode.right); // if the treeNode has a right child, push it to the queue
     }
@@ -109,8 +109,10 @@ console.log(bst.contains(7)); // return false
 
 // bst.depthFirstTraversal(log, 'in-order'); // 10 20 30 35 45 50 59 60 70 85 100 105
 // bst.depthFirstTraversal(log, 'pre-order'); // 50 30 20 10 45 35 70 60 59 100 85 105
-bst.depthFirstTraversal(log, 'post-order'); // 10 20 35 45 30 59 60 85 105 100 70 50
+// bst.depthFirstTraversal(log, 'post-order'); // 10 20 35 45 30 59 60 85 105 100 70 50
 
 function log(value) {
     console.log(value);
 }
+
+bst.breadthFirstTraversal(log);
