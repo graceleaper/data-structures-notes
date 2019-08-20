@@ -68,6 +68,16 @@ BST.prototype.depthFirstTraversal = function(iteratorFunc, order) {
     if (order === 'post-order') iteratorFunc(this.value);
 };
 
+/* 
+    traverse through whole tree and process every node.
+    Move down tree level-by-level.
+    Good for identifying hierarchies.
+*/
+BST.prototype.breadthFirstTraversal = function(iteratorFunc) {
+    let queue = [this]; // first in, first out. And `this` refers to root node of our BST
+
+}
+
 const bst = new BST(50); // an instance of one node without any child nodes
 bst.insert(30);
 bst.insert(70);
