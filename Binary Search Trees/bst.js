@@ -75,7 +75,16 @@ BST.prototype.depthFirstTraversal = function(iteratorFunc, order) {
 */
 BST.prototype.breadthFirstTraversal = function(iteratorFunc) {
     let queue = [this]; // first in, first out. And `this` refers to root node of our BST
-
+    /*
+        while loop will keep running as long as children are being pushed to the queue
+        while loop allows us to run through each node level-by-level, and not branch-by-branch
+    */
+    while (queue.length) { // run while queue is NOT empty
+        let treeNode = queue.shift(); // take first node out of queue, and save it as treeNode
+        iteratorFunc(treeNode); // run iterator function on the treeNode
+        if (treeNode.left) queue.push(treeNode.left); // if the treeNode has a left child, push it to the queue
+        if (treeNode.right) queue.push(treeNode.right); // if the treeNode has a right child, push it to the queue
+    }
 }
 
 const bst = new BST(50); // an instance of one node without any child nodes
