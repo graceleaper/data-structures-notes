@@ -87,6 +87,16 @@ BST.prototype.breadthFirstTraversal = function(iteratorFunc) {
     }
 }
 
+BST.prototype.getMinVal = function() {
+    if (this.left) return this.left.getMinVal();
+    else return this.value;
+}
+
+BST.prototype.getMaxVal = function() {
+    if (this.right) return this.right.getMaxVal();
+    else return this.value;
+}
+
 const bst = new BST(50); // an instance of one node without any child nodes
 bst.insert(30);
 bst.insert(70);
@@ -116,3 +126,8 @@ function log(value) {
 }
 
 bst.breadthFirstTraversal(log);
+
+/*
+console.log('MIN: ', bst.getMinVal());
+console.log('MAX: ', bst.getMaxVal());
+*/
