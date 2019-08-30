@@ -125,7 +125,7 @@ function log(value) {
     console.log(value);
 }
 
-bst.breadthFirstTraversal(log);
+// bst.breadthFirstTraversal(log);
 
 /*
 console.log('MIN: ', bst.getMinVal());
