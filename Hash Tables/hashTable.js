@@ -18,6 +18,18 @@ function HashNode(key, value, next) {
     this.next = next || null; // if no next parameter (next node) is passed in, set to null
 }
 
+HashTable.prototype.hash = function(key) {
+    let total = 0; // initiate total variable
+    // loop through every character in string/key parameter
+    for (let i = 0; i < key.length; i++) {
+        total += key.charCodeAt(i); // add numeric value of every character at string to our total
+    }
+    // total is a large # now, but we need to make it a # corresponding to a bucket #
+    let bucket = total % this.numBuckets; // divide any # by 30, and remainder will be a # between 0 and 29
+    return bucket;
+}
+
 const myHT = new HashTable(30);
 
-console.log(myHT);
+// console.log(myHT);
+console.log(myHT.hash('Becca')); // 12
